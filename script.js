@@ -1,11 +1,13 @@
 
-
-var quizQuestions = ["This is question 1", "This is question 2", "This is question 3"];
-
-var quizAnswers = ["This is answer 1", "This is answer 2", "This is answer 3", "This is answer 4"];
-
-
-
+// Global variables
+var quizQuestions = [];
+var quizAnswers = [];
+var totalSeconds = 75;
+var secondsElapsed = 0;
+var status = "start";
+var secondsDisplay = document.createElement("div").setAttribute("id", "timer");
+var interval;
+var question = 1;
 
 // Creating the start button
 var startButton = document.createElement("button");
@@ -23,8 +25,11 @@ startButton.addEventListener("click", function(){
     body.appendChild(question);
 
     buttonBuilder();
-
+    startTimer();
+    
 });
+
+
 
 
 // Creating a function to create 4 buttons for answers
@@ -48,4 +53,39 @@ var buttonBuilder = function(){
     fourthAnswer.innerHTML = quizAnswers[3];
     body.appendChild(fourthAnswer);
     document.body.appendChild(document.createElement("br"));
+}
+
+
+//Creating a timer
+function displaySeconds(){
+    var secondsLeft = (totalSeconds - secondsElapsed) % 60;
+
+  var formattedSeconds;
+
+  if (secondsLeft < 10) {
+    formattedSeconds = "0" + secondsLeft;
+  } else {
+    formattedSeconds = secondsLeft;
+  }
+
+  return formattedSeconds;
+}
+
+function startTimer(){
+    interval = setInterval(function(){
+    secondsElapsed++
+    console.log(secondsElapsed);
+
+    if(secondsElapsed === totalSeconds){
+        stopTimer();
+        alert("at least its running");
+        
+    }
+}, 1000); }
+
+
+
+function stopTimer(){
+    clearInterval(interval);
+    totalSeconds = 0;
 }
