@@ -1,17 +1,10 @@
 
 // Global variables
-var quizQuestions = ["this is the first question", "this is the second question", "this is the third question", "this is the fourth question"];
-var quizAnswersOne = ["filler1", "filler2","filler3","filler4"];
-var quizAnswersTwo = ["filler1", "filler2","filler3","filler4"];
-var quizAnswersThree = ["filler1", "filler2","filler3","filler4"];
-var quizAnswersFour = ["filler1", "filler2","filler3","filler4"];
 var totalSeconds = 75;
 var secondsElapsed = 0;
-var status = "start";
-var secondsDisplay = document.createElement("div").setAttribute("id", "timer");
 var interval;
+var secondsLeft = 0;
 
-var correctAnswer = 0;
 
 
 // Creating the start button
@@ -26,59 +19,49 @@ body.appendChild(startButton);
 startButton.addEventListener("click", function(){
     startButton.remove();
     questionGroup = 1;
-    
+    //Start the timer
     startTimer();
+  
+
+    //Constructor Function to create the Quiz 
+    function QuestionList(questions) {
+        this.score = 0;
+        this.questions = questions;
+        this.questionIndex = 0;
+    }
+    
+    QuestionList.prototype.getQuestionIndex = function() {
+        return this.questions[this.questionIndex];
+    }
+    
+
+    //Checks if answer is correct and if it is increments score by 1
+    QuestionList.prototype.guess = function(answer) {
+        if(this.getQuestionIndex().isAnswerCorrect(answer)) {
+            this.score++;
+        } 
+    
+        this.questionIndex++;
+    }
+
+
+    //checks how many questions have been answered against how many questions there are total
+    QuestionList.prototype.isEnded = function() {
+        return this.questionIndex === this.questions.length;
+    }
+    
+
       
 });
 
 
-
-
-
-// Creating a function to build the question element
-function questionBuilder(){
-    var question = document.createElement("h1");
-    question.setAttribute("id", "headingQuestion");
-    question.innerHTML = quizQuestions[0];
-    body.appendChild(question);
-}
-
-
-// creating an array of question objects
-var questionList = [
-    {
-        "question": "This is question 1",
-        "wrongAnswer1": "This is a wrong answer",
-        "wrongAnswer2": "This is a wrong answer",
-        "wrongAnswer3": "This is a wrong answer",
-        "rightAnswer": "This is the right answer"
-    }
-
-
-
-]
-
- 
-
-//Creating a timer
-function displaySeconds(){
-    var secondsLeft = (totalSeconds - secondsElapsed) % 60;
-
-  var formattedSeconds;
-
-  if (secondsLeft < 10) {
-    formattedSeconds = "0" + secondsLeft;
-  } else {
-    formattedSeconds = secondsLeft;
-  }
-
-  return formattedSeconds;
-}
-
 function startTimer(){
     interval = setInterval(function(){
     secondsElapsed++
-    console.log(secondsElapsed);
+    secondsLeft = totalSeconds - secondsElapsed;
+    var timer = document.getElementById("timer");
+    timer.textContent = "Time left " + secondsLeft;
+    //console.log(secondsElapsed);
 
     if(secondsElapsed === totalSeconds){
         stopTimer();
