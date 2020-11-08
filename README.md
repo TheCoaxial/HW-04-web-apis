@@ -9,4 +9,4 @@ The second creates a questions object  that that tracks text, options and the us
 Below is a screenshot and link to the deployed app.
 
 https://thecoaxial.github.io/HW-04-web-apis/
-![Screenshot](Quiz.PNG)
+![Screenshot](quiz1.PNG)
