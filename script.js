@@ -12,8 +12,8 @@ var startButton = document.createElement("button");
 startButton.className += 'start';
 startButton.innerHTML = "Start Quiz";
 
-var body = document.getElementsByTagName("body")[0];
-body.appendChild(startButton);
+var footer = document.getElementsByTagName("footer")[0];
+footer.appendChild(startButton);
 
 
 // Creating a function to create questions and answers dynamically
