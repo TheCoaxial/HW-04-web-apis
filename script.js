@@ -149,7 +149,7 @@ function startTimer(){
 
     if(secondsElapsed === totalSeconds){
         stopTimer();
-        alert("at least its running");
+        alert("Times up!");
         
     }
 }, 1000); }
