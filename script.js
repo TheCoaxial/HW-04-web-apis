@@ -9,6 +9,7 @@ var secondsLeft = 0;
 
 // Creating the start button
 var startButton = document.createElement("button");
+startButton.className += 'start';
 startButton.innerHTML = "Start Quiz";
 
 var body = document.getElementsByTagName("body")[0];
@@ -118,7 +119,7 @@ startButton.addEventListener("click", function(){
     
     
     
-    // create questions here
+    // Questions
     var questions = [
         new Question("Which of the following is true about variable naming conventions in JavaScript?", ["JavaScript variable names must begin with a letter or the underscore character.", "JavaScript variable names are case sensitive.","Both of the above", "None of the above"], "Both of the above"),
         new Question(" - Which of the following function of String object returns the primitive value of the specified object.", ["valueOf()", "toString()", "toUpperCase", "toLocaleUpperCase"], "valueOf()"),

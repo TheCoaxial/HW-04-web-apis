@@ -40,7 +40,7 @@ body {
     margin-top: 30px;
 }
  
-#btn0, #btn1, #btn2, #btn3 {
+#btn0, #btn1, #btn2, #btn3, .start {
     background-color: #67697C;
     width: 250px;
     font-size: 20px;
